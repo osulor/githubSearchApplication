@@ -17,7 +17,9 @@ import io.reactivex.disposables.CompositeDisposable
 
 class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
 
-   // private val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
+    private lateinit var user : Item
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
 
@@ -31,16 +33,8 @@ class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<User
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
 
-        val user = usersList[position]
+         user = usersList[position]
 
-//        compositeDisposable.add(
-//            MainActivity.viewModel.getSingleUser(user.login.toString())
-//                .subscribe({user ->
-//                    holder.repoCount.text = user.publicRepos.toString()
-//                }, {throwable ->
-//                    Log.d("ERROR_TAG", throwable.message.toString())
-//                })
-//        )
 
         holder.apply {
 
@@ -48,6 +42,8 @@ class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<User
             Glide.with(holder.itemView.context).load(user.avatarUrl).into(user_avatar)
            // repoCount.text = MainActivity.userRepoCount.toString()
         }
+
+      //  holder.setCount()
 
         holder.itemView.setOnClickListener {
             holder.itemView.context.applicationContext.sendBroadcast(Intent("from.user.recycler").also {
@@ -63,6 +59,18 @@ class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<User
         val username = itemView.findViewById<TextView>(R.id.username)
         val user_avatar = itemView.findViewById<ImageView>(R.id.user_avatar)
         val repoCount = itemView.findViewById<TextView>(R.id.repoCount_textView)
+
+//        fun setCount(){
+//
+//            compositeDisposable.add(
+//                MainActivity.viewModel.getSingleUser(user.login.toString())
+//                    .subscribe({user ->
+//                       repoCount.text = user.publicRepos.toString()
+//                    }, {throwable ->
+//                        Log.d("ERROR_TAG", throwable.message.toString())
+//                    })
+//            )
+//        }
 
     }
 }

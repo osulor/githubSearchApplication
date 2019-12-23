@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
             handler.post{
                 val username = intent?.getStringExtra("username")
-                //Toast.makeText(context,username.toString(),Toast.LENGTH_LONG).show()
                 val intent2 = Intent(context,UserInfosActivity::class.java)
                 intent2.putExtra("username",username)
                 startActivity(intent2)
@@ -52,26 +51,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(GitViewModel::class.java)
 
 
-        searchRepoButton.setOnClickListener {
-            val searchValue = search_user.text.toString()
-
-            compositeDisposable.add(
-                viewModel.getUsers(searchValue)
-                    .subscribe({users ->
-                        displayUsers(users.items)
-                    }, {throwable ->
-                        Log.d("ERROR_TAG", throwable.message.toString())
-                    })
-            )
-        }
-
         search_user.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {}
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+            override fun afterTextChanged(p0: Editable?) {
                 val searchValue = search_user.text.toString()
 
 
@@ -84,6 +65,24 @@ class MainActivity : AppCompatActivity() {
                             Log.d("ERROR_TAG", throwable.message.toString())
                         })
                 )
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+//                val searchValue = search_user.text.toString()
+//
+//
+//                compositeDisposable.add(
+//                    viewModel.getUsers(searchValue)
+//                        .subscribe({users ->
+//                            displayUsers(users.items)
+//
+//                        }, {throwable ->
+//                            Log.d("ERROR_TAG", throwable.message.toString())
+//                        })
+//                )
             }
         })
     }

@@ -51,4 +51,7 @@ dependencies {
 
     //LifeCycle
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    implementation "androidx.cardview:cardview:1.0.0"
+
 }
