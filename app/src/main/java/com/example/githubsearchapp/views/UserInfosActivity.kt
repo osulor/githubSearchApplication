@@ -121,5 +121,11 @@ class UserInfosActivity : AppCompatActivity() {
             following.append(user.email.toString())
         }
 
+        if (user.bio != null){
+            user_bio.text = user.bio.toString()
+        } else {
+            user_bio.text = "N/A"
+        }
+
     }
 }

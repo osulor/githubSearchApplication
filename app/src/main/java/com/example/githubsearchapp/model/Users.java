@@ -17,6 +17,8 @@ public class Users {
     @Expose
     private List<Item> items = null;
 
+    private int totalNumberOfRepositories;
+
     public Integer getTotalCount() {
         return totalCount;
     }
@@ -41,4 +43,11 @@ public class Users {
         this.items = items;
     }
 
+    public int getTotalNumberOfRepositories() {
+        return totalNumberOfRepositories;
+    }
+
+    public void setTotalNumberOfRepositories(int totalNumberOfRepositories) {
+        this.totalNumberOfRepositories = totalNumberOfRepositories;
+    }
 }

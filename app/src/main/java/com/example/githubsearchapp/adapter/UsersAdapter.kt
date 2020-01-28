@@ -17,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
 
-    private val compositeDisposable = CompositeDisposable()
+   // private val compositeDisposable = CompositeDisposable()
     private lateinit var user : Item
 
 
@@ -58,19 +58,9 @@ class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<User
 
         val username = itemView.findViewById<TextView>(R.id.username)
         val user_avatar = itemView.findViewById<ImageView>(R.id.user_avatar)
-        val repoCount = itemView.findViewById<TextView>(R.id.repoCount_textView)
+        //val repoCount = itemView.findViewById<TextView>(R.id.repoCount_textView)
 
-//        fun setCount(){
-//
-//            compositeDisposable.add(
-//                MainActivity.viewModel.getSingleUser(user.login.toString())
-//                    .subscribe({user ->
-//                       repoCount.text = user.publicRepos.toString()
-//                    }, {throwable ->
-//                        Log.d("ERROR_TAG", throwable.message.toString())
-//                    })
-//            )
-//        }
+
 
     }
 }
