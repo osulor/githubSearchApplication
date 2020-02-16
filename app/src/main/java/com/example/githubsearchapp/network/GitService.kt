@@ -30,8 +30,6 @@ interface GitService {
     fun getRepoInfos(@Path("username") username: String,
                      @Path("repoName") repoName: String): Single<Repository>
 
-
-
     @GET("/users/{username}")
     fun getSingleUser(@Path("username") username: String): Single<SingleUser>
 

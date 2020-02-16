@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -54,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         search_user.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 val searchValue = search_user.text.toString()
-
 
                 compositeDisposable.add(
                     viewModel.getUsers(searchValue)
@@ -69,21 +69,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-//                val searchValue = search_user.text.toString()
-//
-//
-//                compositeDisposable.add(
-//                    viewModel.getUsers(searchValue)
-//                        .subscribe({users ->
-//                            displayUsers(users.items)
-//
-//                        }, {throwable ->
-//                            Log.d("ERROR_TAG", throwable.message.toString())
-//                        })
-//                )
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
     }
 

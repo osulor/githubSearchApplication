@@ -33,22 +33,6 @@ class GitViewModel: ViewModel(){
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-//    fun getUsers(username: String) : Single<Users> {
-//        return gitFactory.getUsersList(username)
-//            .flatMap { users ->
-//                users.items.forEach {
-//                    gitFactory.getRepos(it.login)
-//                        .flatMap { repos ->
-//                            users.totalNumberOfRepositories = repos.size
-//                            Single.just(repos)
-//                        }.doOnError { it.printStackTrace() }
-//                }
-//                Single.just(users)
-//            }
-//            .doOnError { it.printStackTrace() }
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//    }
 
 
     fun getSingleUser(username: String) : Single<SingleUser> {

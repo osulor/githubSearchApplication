@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubsearchapp.R
@@ -36,13 +35,6 @@ class ReposAdapter(private val repoList: List<Repository>) : RecyclerView.Adapte
                 starsCount.append(repo.stargazersCount.toString())
             }
 
-//        holder.itemView.setOnClickListener {
-//            val webView : WebView = holder.itemView.findViewById(R.id.webView)
-//
-//            webView.loadUrl(repo.htmlUrl)
-//            webView.visibility = View.VISIBLE
-//        }
-
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, ReposWebviewActivity::class.java)
             intent.putExtra("repositoryUrl", repoList[position].htmlUrl)
@@ -53,13 +45,13 @@ class ReposAdapter(private val repoList: List<Repository>) : RecyclerView.Adapte
 
     inner class RepoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        val repoName : TextView = itemView.findViewById(R.id.repo_name)
-        val forkCount : TextView = itemView.findViewById(R.id.fork)
-        val starsCount : TextView = itemView.findViewById(R.id.stars)
+        val repoName = itemView.findViewById<TextView>(R.id.repo_name)
+        val forkCount = itemView.findViewById<TextView>(R.id.fork_label)
+        val starsCount = itemView.findViewById<TextView>(R.id.stars_label)
 
 
         fun refreshFields(){
-            forkCount.text = "Forks: "
+            forkCount.text= "Fork: "
             starsCount.text = "Stars: "
         }
     }

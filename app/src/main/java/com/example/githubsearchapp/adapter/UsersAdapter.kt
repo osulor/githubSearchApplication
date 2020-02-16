@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubsearchapp.R
+import com.example.githubsearchapp.databinding.UserItemLayoutBinding
 import com.example.githubsearchapp.model.Item
 import com.example.githubsearchapp.views.MainActivity
 import io.reactivex.disposables.CompositeDisposable
@@ -23,8 +25,7 @@ class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<User
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item_layout,parent,false)
-        return UsersViewHolder(view)
+        return UsersViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),R.layout.user_item_layout,parent,false))
     }
 
     override fun getItemCount(): Int {
@@ -35,32 +36,15 @@ class UsersAdapter(private val usersList: List<Item>): RecyclerView.Adapter<User
 
          user = usersList[position]
 
+         holder.binding.user = user
 
-        holder.apply {
-
-           username.text = user.login.toString()
-            Glide.with(holder.itemView.context).load(user.avatarUrl).into(user_avatar)
-           // repoCount.text = MainActivity.userRepoCount.toString()
-        }
-
-      //  holder.setCount()
-
-        holder.itemView.setOnClickListener {
-            holder.itemView.context.applicationContext.sendBroadcast(Intent("from.user.recycler").also {
-                it.putExtra("username", user.login.toString())
+        holder.binding.root.setOnClickListener {
+            holder.binding.root.context.sendBroadcast(Intent("from.user.recycler")
+                .also {
+                    it.putExtra("username", user.login.toString())
             })
         }
-
     }
 
-
-    inner class UsersViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
-        val username = itemView.findViewById<TextView>(R.id.username)
-        val user_avatar = itemView.findViewById<ImageView>(R.id.user_avatar)
-        //val repoCount = itemView.findViewById<TextView>(R.id.repoCount_textView)
-
-
-
-    }
+    inner class UsersViewHolder(val binding: UserItemLayoutBinding): RecyclerView.ViewHolder(binding.root)
 }
